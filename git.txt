@@ -25,3 +25,6 @@ git rm --cached .
 
 // Посмотреть предварительно, что будет добавлено
 git add -n .
+
+// Сохраняет данных для входа (не безопасный)
+git config credential.helper store

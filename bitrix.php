@@ -207,6 +207,7 @@
 	\Bitrix\Iblock\SectionTable::getList(); // Разделы инфоблоков
 	\Bitrix\Iblock\ElementTable::getList(); // Элементы инфоблоков 
 	\Bitrix\Iblock\InheritedPropertyTable::getList(); // Наследуемые свойства (seo шаблоны)
+	\Bitrix\Sale\Order::getList(); // Таблица заказов
 	
 		// Методы 
 		add(array $data) // добавление элемента
