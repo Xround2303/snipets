@@ -28,3 +28,6 @@ git add -n .
 
 // Сохраняет данных для входа (не безопасный)
 git config credential.helper store
+
+// Удалить файл из индексации трекером
+git update-index --assume-unchanged  file_name_with_path
