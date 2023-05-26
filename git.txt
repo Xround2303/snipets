@@ -31,3 +31,18 @@ git config credential.helper store
 
 // Удалить файл из индексации трекером
 git update-index --assume-unchanged  file_name_with_path
+
+
+Полезные команды
+$ git status Посмотреть список всех измененных, добавленных и удаленных файлов
+$ git log - посмотреть список коммитов
+$ git branch - посмотреть на какой ветке находимся
+$ git branch develop - создание новой ветки
+$ git checkout develop - переход на ветку
+$ git diff local/.../template.php Посмотреть подробные изменения в файле
+$ git reset --hard HEAD^ Удалить последний коммит
+$ git reset --soft HEAD^ Отменит последний коммит, и зменения сохранится
+$ git revert commit-sha1 Коммит который отменяет коммит
+$ git commit -a --amend Добавит изменения к последнему коммиту
+$ git show <коммит> Посмотреть изменения, внесенные коммитом
+$ git clone Создание копии (удаленного) репозитория
