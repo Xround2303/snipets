@@ -1,0 +1,35 @@
+1. На сервере уже должнен быть установлен docker
+2. На сервере уже должен быть установлен nginx
+3. Сайты размещены в директории /home/ (либо в любой другой)
+4. Создаем директорию для сайта /home/site1/
+5. В этой директории /home/site1/ разворачиваем (клонируем проект из репозитория, где будет docker-compose.yml)
+6. Настраиваем конфиги в .env порты, пароли к бд и другое.
+7. Запускаем `docker-compose up -d`
+8. После того как поднялись контейнеры, переходим к настройки nginx /etc/nginx/sites-available/
+9. Создаем файл название-сайта.conf в директории в которую перешли /etc/nginx/sites-available/
+10. Вставляем такой код и редактируем 
+
+server {
+    server_name test.ru; #домен сайта, который вы настроили на этот сервер
+
+   location / {
+        proxy_pass http://127.0.0.1:8001; #здесь указать нужно порт, который был настроен на шаге 6.
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_buffering off;
+        proxy_request_buffering off;
+        proxy_http_version 1.1;
+        proxy_intercept_errors on;
+        client_max_body_size 100M;
+   }
+}
+
+11. Сохраняем
+12. Делаем ссылку на конфиг файл `ln -sf sites-available/название-сайта.conf sites-enabled/`
+13. Перезапускаем nginx - systemctl restart nginx
+14. Устанавливаем cerbots если не установлен https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+15. Создаем ssl ключи через cerbots находясь в директории /etc/nginx/sites-available/ запускаем команду certbot --nginx -d доменное-имя-сайта -d www.доменное-имя-сайта
+
